@@ -31,6 +31,7 @@ const inputRestaurant = document.getElementById("new-restaurant");
 const inputImg = document.getElementById("new-image");
 const inputRating = document.getElementById("new-rating");
 const inputComment = document.getElementById("new-comment");
+const deleteRamen = document.getElementById("delete-ramen");
 
 // render function
 function renderRamen(ramenObj) {
@@ -76,6 +77,28 @@ function populateDetail(ramenObj) {
 }
 
 //update the featured ramen
+document.getElementById("edit-ramen").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const updatedRating = e.target.children[2];
+  const updatedComment = e.target.children[4];
+  runUpdate(updatedRating, updatedComment);
+});
+
+function runUpdate(rating, comment) {
+  console.log("updated");
+  //display update
+  document.getElementById("comment-display").textContent = comment.value;
+  document.getElementById("rating-display").textConent = rating.value;
+  //menu update?
+  // ehhhh not enough time to do this one :(
+}
+
+//delete featured ramen
+deleteRamen.addEventListener("click", () => {
+  console.log(
+    "ramen deleted :( ... i actually didn't have enough time to implement this one either, but I think I know how"
+  );
+});
 
 // on load function (pulling data from server)
 function init() {
