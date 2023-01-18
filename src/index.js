@@ -2,11 +2,17 @@
 
 /* 
 TODO: 
+
+CORE DELIVERABLES 
 1. fetch from server
 2. render ramen to the dom 
 3. add event listener to ramenImg and console log details once clicked 
 4. write a helper function "populateDetail" which populates the details div 
 5. add form input and put data into menu (does not have to persist)
+
+ADVANCED DELIVERABLES 
+1. populate image with first ramen
+2. update the featured ramen 
 */
 
 document.addEventListener("DOMContentLoaded", init);
@@ -69,12 +75,19 @@ function populateDetail(ramenObj) {
   ramenComment.textContent = ramenObj.comment;
 }
 
+//update the featured ramen
+
 // on load function (pulling data from server)
 function init() {
   fetch("http://localhost:3000/ramens")
     .then((res) => res.json())
     .then((ramenObjArray) => {
       console.log(ramenObjArray);
-      ramenObjArray.forEach((ramenObj) => renderRamen(ramenObj));
+      ramenObjArray.forEach((ramenObj) => {
+        renderRamen(ramenObj);
+        if (ramenObj.id === 1) {
+          populateDetail(ramenObj);
+        }
+      });
     });
 }
